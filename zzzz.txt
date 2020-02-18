@@ -1,0 +1,91 @@
+1. 유닉스 표준화
+
+2. 리눅스의 기본 쉘은?
+ -bash 없으면 chsh
+
+3.유닉스와 리눅스의 디렉토리 구조중 /etc
+-사용자 관리를 위한 암호관련 파일, 네트워크 파일 등이있는 디렉토리
+(/etc/passwd)계정   (/etc/shadow)패스워드 (/etc/fstab)마운트
+
+4.표준 윈도우시스템인 X 윈도우 시스템
+-우분투 데스크탑 모드, 그래픽 환경기반의 시스템 소프트웨어,GUI환경
+
+5.X 윈도우의 대표적인 데스크탑 환경의 종류
+-x.org
+
+6.strcmp()함수는 두 문자열을 순서대로 비교 하는 함수
+
+-strcmp(s1,s2) - s1>s2 1   s1=s2  0   s1<s2  -1
+
+7.저수준 파일관련 함수 중 파일이나 디렉토리를 삭제할 수 있는 함수
+-   rm -r:하부까지삭제 -f: 여부묻지않음   -rf둘다
+
+8.int open(const char *pathname,int oflag)
+-#include <stdio.h>
+#include <fcntl.h>
+
+int main()
+{
+	char *fname = "test.txt";
+	int fd;
+
+	fd = open(fname, O_RDONLY);
+	if(fd<0)
+		perror("open()");
+	else{
+		printf("Success!\nFilename : %10s\nDescriptor: %d\n", fname, fd);
+		close(fd);
+	}
+	return 0;
+}
+
+9. int creat(const char *pathname, mode_t, mode);
+#include <stdio.h>
+#include <fcntl.h>
+
+int main()
+{
+	char *fname = "test2.txt";
+	int fd;
+
+	fd=creat(fname,0666);
+	if(fd<0)
+		perror("reat()");
+	else{
+		printf("Success!\nFilename : %10s\nDescriptor: %d\n", fname, fd);
+		close(fd);
+	}
+	return 0;
+}
+
+10dup()함수 호출의 결과로 알맞은 내용은?
+
+11. 프로세스가 생성 될 때 기본적으로 생성되는 파일 포인터가 아닌것은?
+-fopen, fclose, fgetc, fputc
+
+12.utime()함수호출시 필요인자 
+
+struct utimbuf{
+	time_t actime; /(access time)
+	time_t modtime; /(modification time)
+};
+
+13. malloc
+
+14._exit(0);
+- _exit를 직접호출, 표준출력의 내용이 화면에 출력되지 않는다.
+
+15. fork()함수와 다른 vfork()함수의 특징을 두가지 이상 기술 하시오.
+ vfork는 부모프로세스와 자원을 공유, 프로세스를 생성할때 부모프로세스의 메모리를 모두 복사하지 않음.
+
+16. 자식프로세스가 종료되면서 발생되는 시그널은?
+-SIGCHLD(child)
+
+17. 프로세스 통신 중 메세지 큐관련 한수중 msgsnd
+msgsnd(int id, const void *msg, size_t size, int flg)
+
+19.
+sticky bit가 설정된 디렉토리에 파일을 생성하면 해당 파일은 생성한 사람의 소유가 되며, 오직 소유자와 root자에게만 해당파일에 대한 
+삭제 및 변경의 권한이 있음, 1xxx로 설정
+20. 프로세스간 통신 기법중
+-PIPE
